@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Module Construction</title>
+  <meta name="description" content="Профессиональное строительство домов, бань и беседок под ключ. Проектирование, качественные материалы, гарантия.">
+<style>
+  :root{
+      --bg:#ffffff;
+      --card:#ffffff;
+      --primary: #4c8056;
+      --accent:#0bb389;
+      --text:#0f1724;
+      --muted:#6b7280;
+      --radius:12px;
+      --shadow: 0 8px 24px rgba(15,23,42,0.06);
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:linear-gradient(180deg,var(--bg),#448a5853);
+      background-attachment: fixed;
+      min-width: 100%;
+      min-height: 100%;
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      padding:24px;
+      line-height:1.45;
+    }
+    .container{
+      max-width:1100px;
+      margin:0 auto;
+    }
+
+    header{
+      
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:24px;
+    }
+    .brand{display: block;align-items:center;gap:12px;text-decoration:none;color:var(--text)}
+    .logo{
+      display:flex;align-items:center;justify-content: center;color:#000000;font-weight:800;font-size:20px;
+    }
+    nav{display:flex;gap:14px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600;padding:8px;border-radius:8px}
+    nav a:hover{color:var(--text);background:rgba(15,23,42,0.04)}
+    .phone{background:var(--primary);color:#fff;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:700;box-shadow:0 8px 20px rgba(11,108,243,0.14)}
+
+    .hero{
+
+      display:grid;
+      grid-template-columns:1fr 380px;
+      gap:24px;
+      align-items:start;
+      margin-bottom:30px;
+    }
+    .hero-card{
+      background:linear-gradient(180deg,rgba(255,255,255,0.7),#fff);
+      padding:26px;border-radius:var(--radius);box-shadow:var(--shadow);
+    }
+    .hero h1{margin:0 0 10px;font-size:32px}
+    .hero p{margin:0 0 16px;color:var(--muted)}
+    .actions{display:flex;gap:12px;margin-top:8px}
+    .btn{padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:700}
+    .btn.primary{background:var(--primary);color:#fff}
+    .btn.ghost{background:transparent 1px solid rgba(15,23,42,0.06);color:var(--text)}
+
+    .signup{
+      background:linear-gradient(180deg,#fff,#f8fbff);
+      padding:18px;border-radius:14px;box-shadow:var(--shadow);
+    }
+    .signup h3{margin:0 0 8px}
+    .field{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+    input, textarea, select{
+      padding:10px;border-radius:8px;border:1px solid rgba(15,23,42,0.06);
+      font-size:14px;background:#fff;
+    }
+    input:focus, textarea:focus, select:focus{outline:none;box-shadow:0 6px 18px rgba(11,179,137,0.08);border-color:var(--accent)}
+
+    .features{
+      display: flex;
+      gap:16px;
+      margin-bottom:30px;
+    }
+
+    .feature{
+      background:var(--card);margin: 50px;padding:25px;border-radius:12px;box-shadow:var(--shadow); background-color: #4c8056;
+    }
+    .feature h5{font-size:18px; font-weight: bolder; color: #fff;}
+    .feature h4{margin:0 0 8px; font-size: 16px;font-weight: 400; color: #fff;}
+    .feature p{margin:0;color:var(--muted);font-size:14px; color: #fff;}
+
+    .projects{
+      margin-bottom:30px;
+    }
+    .projects-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+    }
+    .project{
+      background:var(--card);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);
+    }
+    .project img{width:100%;height:160px;object-fit:cover;display:block}
+    .project .meta{padding:12px}
+    .project h5{margin:0 0 6px;font-size:18px; font-weight: bolder;}
+    .project h4{margin: 0%;font-size: 16px;font-weight: 400;}
+    .project p{margin:0;color:var(--muted);font-size:14px}
+
+    .process{
+      display: flex;gap:12px;align-items: flex-start;margin-bottom:50px; margin: 50px;
+    }
+
+    .step{background:var(--card);border-radius:12px;padding:25px; box-shadow:var(--shadow);flex:1; background: #4c8056; color: #fff; }
+    .step h5{font-size:18px; font-weight: bolder;}
+    .step h4{font-size: 16px;font-weight: 400;}
+
+    footer{
+      margin-top:20px;padding-top:18px;border-top:1px solid rgba(15,23,42,0.04);display:flex;justify-content:space-between;align-items:center;
+    }
+    footer small{color:var(--muted)}
+
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr}
+      .features{grid-template-columns:repeat(2,1fr)}
+      .projects-grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:580px){
+      nav{display:none}
+      .features{grid-template-columns:1fr}
+      .projects-grid{grid-template-columns:1fr}
+      header{flex-direction:column;align-items:flex-start;gap:12px}
+    }
+</style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <a class="brand" href="#">
+        <div class="logo"style="font-weight:800">MODULE CONSTRUCTION</div>
+          <div style="font-size:12px">Дома, бани, беседки под ключ</div>
+      </a>
+
+      <nav>
+        <a href="#services">О нас</a>
+        <a href="#projects">Проекты</a>
+        <a href="#process">Технологии</a>
+        <a href="#contacts">Контакты</a>
+        <a class="phone" href="tel:+79802180851">+7(980)218-08-51</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-card">
+        <h1>Строим дома, бани и беседки качественно и в срок</h1>
+        <p>Проектирование, материалы высокого качества, опытные бригады. Гарантия на работы и прозрачная смета.</p>
+        <div class="actions">
+          <a class="btn ghost" href="#projects">Посмотреть проекты</a>
+        </div>
+      </div>
+    </section> 
+
+    <section id="services" class="features" aria-label="Услуги">
+      <div class="feature">
+        <h5 style="font-size: xx-large;">О нас</h5>
+        <h5>Как мы работаем?</h5>
+        <h4>
+          <dl>- Согласование индивидуального проекта в течение 1–3 дней бесплатно — встреча в офисе или в согласованном месте с менеджером по проектам.</dl>
+          <dl>- Предоставление эскиза дома в течение 1 дня бесплатно.</dl>
+          <dl>- Бесплатный расчет стоимости дополнительных работ (монтаж коммуникаций, фасада, отделка и т. п.) при необходимости.</dl>
+          <dl>- Сборка домокомплекта из заводских деталей; производство недостающих элементов — 1–10 дней.</dl>
+          <dl>- Доставка домокомплекта на участок — 1 день.</dl>
+          <dl>- Сборка в комплектацию "теплый контур" — 1–5 дней. Сборку можно выполнить под нашим контролем собственными силами или силами подрядчиков (от 3 человек).</dl>
+          <dl>- Выполнение оставшихся работ по фасаду, коммуникациям и внутренней отделке — вы можете выполнить их сами или с привлечением подрядчиков.</dl>
+        </h4>
+        <h5>Результат</h5>
+        <h4>Вы получаете качественную "коробку" дома по вашему проекту за 5–15 дней, при этом работы на участке займут 1–5 дней. После этого можно продолжать отделочные работы, имея крышу над головой.</h4>
+        <h5>Преимущества</h5>
+        <h4>
+          <dl>- Договор с поэтапной оплатой.</dl>
+          <dl>- Гарантия на домокомплект 10 лет.</dl>
+          <dl>- Технология запатентована и подтверждена реализованным демо‑домом 120 м², доступным для осмотра.</dl>
+          <dl>- Строительство возможно круглогодично в любых погодных условиях.</dl>
+          <dl>- Высокое качество материалов и заводская точность сборки.</dl>
+          <dl>- Компактность домокомплектов — доставка возможна в труднодоступные места (СНТ, плотная застройка, деревни, поля, леса).</dl>
+          <dl>- Возможность последующих пристроек (технология "растущий дом").</dl>
+          <dl>- Высота потолков от 2550 мм до 4500 мм.</dl>
+        </h4>
+        <h5>Сотрудничество B2B</h5>
+        <h4>Мы предлагаем партнёрство подрядным организациям и бригадам. С нашей технологией вы сможете быстро возводить дома для своих клиентов с возможностью индивидуального проектирования в рамках стандартизированных решений: согласование проекта за 3 дня и начало сборки без затрат на длительное проектирование. Сборка доступна бригаде из 3+ человек без спецтехники и кранов. Технология стандартизирована — после первого объекта последующие выполняются быстрее и проще.</h4>
+      </div>
+    </section>   
+
+    <section id="projects" class="projects">
+      <h3 style="margin:0 0 12px">Наши проекты</h3>
+      <div class="projects-grid">
+        <div class="project">
+          <img src="img/Дом 156м2.Конструктор из 13 модулей по 12м2.jpg" alt="Дом проект 1">
+          <div class="meta">
+            <h5 style="margin:0 0 30px">Дом 156м2.<br>Конструктор из 13 модулей по 12м2.</h5>
+            <h4>30 000–80 000 ₽ / м²</h4>
+            <form action="https://vk.com/market/product/dom-156m2konstruktor-iz-13-moduley-po-12-m2-220458872-14673530">
+              <br>
+              <button style="background-color: #4c8056; color: #fff; border: none; padding: 10px; border-radius: 10px; cursor: pointer; font-size: small; font-weight: 600;">Подробнее о проекте</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="project">
+          <img src="img/Дом 144+36м2 (2 террасы). Конструктор из 15 модулей по 12 м2. С сауной.jpg" alt="Дом проект 2">
+          <div class="meta">
+            <h5>Дом 144+36м2 (2 террасы).<br> Конструктор из 15 модулей по 12 м2.<br> С сауной.</h5>
+            <h4>30 000–80 000 ₽ / м²</h4>
+            <form action="https://vk.com/market/product/dom-14436m2-2-terrasy-konstruktor-iz-15-moduley-po-12-m2-s-saunoy-220458872-13310483">
+              <br>
+              <button style="background-color: #4c8056; color: #fff; border: none; padding: 10px; border-radius: 10px; cursor: pointer; font-size: small; font-weight: 600;">Подробнее о проекте</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="project">
+          <img src="img/Дом 120+24м2 (2 террасы).Конструктор из 12 модулей по 12м2..jpg" alt="Дом проект 3">
+          <div class="meta">
+            <h5>Дом 120+24м2 (2 террасы).<br>Конструктор из 12 модулей по 12м2.</h5>
+            <br>
+            <h4>30 000–80 000 ₽ / м²</h4>
+            <form action="https://vk.com/market/product/dom-12024m2-2-terrasykonstruktor-iz-12-moduley-po-12m2-220458872-16146711">
+              <br>
+              <button style="background-color: #4c8056; color: #fff; border: none; padding: 10px; border-radius: 10px; cursor: pointer; font-size: small; font-weight: 600;">Подробнее о проекте</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="project">
+          <img src="img/Дом 96+ 24м2 (терраса). Конструктор из 10 модулей по 12м2..jpg" alt="Дом проект 4">
+          <div class="meta">
+            <h5>Дом 96+ 24м2 (терраса).<br>Конструктор из 10 модулей по 12м2.</h5>
+            <br>
+            <h4>30 000–80 000 ₽ / м²</h4>
+            <form action="https://vk.com/market/product/dom-96-24m2-terrasa-konstruktor-iz-10-moduley-po-12m2-220458872-14923794">
+              <br>
+              <button style="background-color: #4c8056; color: #fff; border: none; padding: 10px; border-radius: 10px; cursor: pointer; font-size: small; font-weight: 600;">Подробнее о проекте</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="project">
+          <img src="img/Дом 108+12м2 (терраса). Каонструктор из 10 модулей по 12м2..jpg" alt="Дом проект 5">
+          <div class="meta">
+            <h5>Дом 108+12м2 (терраса). Конструктор из 10 модулей по 12м2.</h5>
+            <br>
+            <h4>30 000–80 000 ₽ / м²</h4>
+            <form action="https://vk.com/market/product/dom-10812m2-terrasa-kaonstruktor-iz-10-moduley-po-12m2-220458872-16228989">
+              <br>
+              <button style="background-color: #4c8056; color: #fff; border: none; padding: 10px; border-radius: 10px; cursor: pointer; font-size: small; font-weight: 600;">Подробнее о проекте</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="project">
+          <img src="img/U-MOOQB0FZYeEUjWThZQRckcLt4NRW_19yi1Sv_nlC8N3GFIYIdch_GzH0Y1rj1hOFuWL5BKJqrMdyU_654U7MgD.jpg" alt="Дом проект 6">
+          <div class="meta">
+            <h5>Дом 84+ 12м2 (терраса).<br>Конструктор 8 модулей по 12 м2.</h5>
+            <br>
+            <h4>30 000–80 000 ₽ / м²</h4>
+            <form action="https://vk.com/market/product/dom-84-12m2-terrasa-konstruktor-8-moduley-po-12-m2-220458872-13556770">
+              <br>
+              <button style="background-color: #4c8056; color: #fff; border: none; padding: 10px; border-radius: 10px; cursor: pointer; font-size: small; font-weight: 600;">Подробнее о проекте</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="project">
+          <img src="img/Дом 60+12м2 (терраса). Конструктор из 6 модулей по 12м2..jpg" alt="Дом проект 7">
+          <div class="meta">
+            <h5>Дом 60+12м2 (терраса).<br>Конструктор из 6 модулей по 12м2.</h5>
+            <br>
+            <h4>30 000–80 000 ₽ / м²</h4>
+            <form action="https://vk.com/market/product/dom-6012m2-terrasa-konstruktor-iz-6-moduley-po-12m2-220458872-16236384">
+              <br>
+              <button style="background-color: #4c8056; color: #fff; border: none; padding: 10px; border-radius: 10px; cursor: pointer; font-size: small; font-weight: 600;">Подробнее о проекте</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="project">
+          <img src="img/Дом 48 м2. Конструктор из 4 модулей по 12м2.jpg" alt="Дом проект 8">
+          <div class="meta">
+            <h5>Дом 48 м2.<br>Конструктор из 4 модулей по 12м2.</h5>
+            <br>
+            <h4>30 000–80 000 ₽ / м²</h4>
+            <form action="https://vk.com/market/product/dom-48-m2-konstruktor-iz-4-moduley-po-12m2-220458872-16288444">
+              <br>
+              <button style="background-color: #4c8056; color: #fff; border: none; padding: 10px; border-radius: 10px; cursor: pointer; font-size: small; font-weight: 600;">Подробнее о проекте</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="project">
+          <img src="img/Дом 108м2. Конструктор из 9 модулей по 12м2. С расширением жилой площади +36м2.jpg" alt="Дом проект 9">
+          <div class="meta">
+            <h5>Дом 108м2. Конструктор из 9 модулей по 12м2. С расширением жилой площади +36м2</h5>
+            <h4>30 000–80 000 ₽ / м²</h4>
+            <form action="https://vk.com/market/product/dom-108m2-konstruktor-iz-9-moduley-po-12m2-s-rasshireniem-zhiloy-ploschadi-36m2-220458872-13557547">
+              <br>
+              <button style="background-color: #4c8056; color: #fff; border: none; padding: 10px; border-radius: 10px; cursor: pointer; font-size: small; font-weight: 600;">Подробнее о проекте</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="project">
+          <img src="img/Гостевой дом 24м2. Конструктор из 2 модулей по 12м2.jpg" alt="Дом проект 9">
+          <div class="meta">
+            <h5>Гостевой дом 24м2. Конструктор из 2 модулей по 12м2</h5>
+            <br>
+            <h4>30 000–80 000 ₽ / м²</h4>
+            <form action="https://vk.com/market/product/gostevoy-dom-24m2-konstruktor-iz-2-moduley-po-12m2-220458872-16305263">
+              <br>
+              <button style="background-color: #4c8056; color: #fff; border: none; padding: 10px; border-radius: 10px; cursor: pointer; font-size: small; font-weight: 600;">Подробнее о проекте</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="project">
+          <img src="img/Баня 30+18м2 (терраса). Конструктор из 4 модулей по 12м2..jpg" alt="Баня проект 1">
+          <div class="meta">
+            <h5>Баня 30+18м2 (терраса). Конструктор из 4 модулей по 12м2.</h5>
+            <br>
+            <h4>20 000–60 000 ₽ / м²</h4>
+            <form action="https://vk.com/market/product/banya-3018m2-terrasa-konstruktor-iz-4-moduley-po-12m2-220458872-14956130">
+              <br>
+              <button style="background-color: #4c8056; color: #fff; border: none; padding: 10px; border-radius: 10px; cursor: pointer; font-size: small; font-weight: 600;">Подробнее о проекте</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="project">
+          <img src="img/Баня 12+12м2 (терраса). Каркасто-модульная из 2 модуля по 12м2..jpg" alt="Баня проект 2">
+          <div class="meta">
+            <h5>Баня 12+12м2 (терраса). Каркасно-модульная из 2 модуля по 12м2.</h5>
+            <br>
+            <h4>20 000–60 000 ₽ / м²</h4>
+            <form action="https://vk.com/market/product/banya-1212m2-terrasa-karkasto-modulnaya-iz-2-modulya-po-12m2-220458872-16138599">
+              <br>
+              <button style="background-color: #4c8056; color: #fff; border: none; padding: 10px; border-radius: 10px; cursor: pointer; font-size: small; font-weight: 600;">Подробнее о проекте</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="project">
+          <img src="img/Беседка 24м2 Каркасно-модульная из 2 модулей по 12м2..jpg" alt="Беседка проект 1">
+          <div class="meta">
+            <h5>Беседка 24м2 Каркасно-модульная из 2 модулей по 12м2.</h5>
+            <br>
+            <h4>20 000–50 000 ₽ / м²</h4>
+            <form action="https://vk.com/market/product/besedka-24m2-karkasno-modulnaya-iz-2-moduley-po-12m2-220458872-16063848">
+              <br>
+              <button style="background-color: #4c8056; color: #fff; border: none; padding: 10px; border-radius: 10px; cursor: pointer; font-size: small; font-weight: 600;">Подробнее о проекте</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="project">
+          <img src="img/Баня 24+18м2 (терраса). Каркасно-модульная из 3 модулей по 12м2..jpg" alt="Баня проект 3">
+          <div class="meta">
+            <h5>Баня 24+18м2 (терраса). Каркасно-модульная из 3 модулей по 12м2.</h5>
+            <br>
+            <h4>20 000–60 000 ₽ / м²</h4>
+            <form action="https://vk.com/market/product/banya-2418m2-terrasa-karkasno-modulnaya-iz-3-moduley-po-12m2-220458872-14898417">
+              <br>
+              <button style="background-color: #4c8056; color: #fff; border: none; padding: 10px; border-radius: 10px; cursor: pointer; font-size: small; font-weight: 600;">Подробнее о проекте</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="project">
+          <img src="img/Дом 84+ 36м2 (2 террасы). Каркасно-модульный из 10 модулей по 12м2..jpg" alt="Дом проект 10">
+          <div class="meta">
+            <h5>Дом 84+ 36м2 (2 террасы). Каркасно-модульный из 10 модулей по 12м2.</h5>
+            <br>
+            <h4>30 000–80 000 ₽ / м²</h4>
+            <form action="https://vk.com/market/product/dom-84-36m2-2-terrasy-karkasno-modulny-iz-10-moduley-po-12m2-220458872-13609171">
+              <br>
+              <button style="background-color: #4c8056; color: #fff; border: none; padding: 10px; border-radius: 10px; cursor: pointer; font-size: small; font-weight: 600;">Подробнее о проекте</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="project">
+          <img src="img/Дом, хозблок, и т.п. 12м2.Карасно-модульный из 1 модуля 12м2..jpg" alt="Дом проект 11">
+          <div class="meta">
+            <h5>Дом, хозблок, и т.п. 12м2.Карасно-модульный из 1 модуля 12м2.</h5>
+            <br>
+            <h4>30 000–80 000 ₽ / м²</h4>
+            <form action="https://vk.com/market/product/dom-khozblok-i-tp-12m2karasno-modulny-iz-1-modulya-12m2-220458872-13556738">
+              <br>
+              <button style="background-color: #4c8056; color: #fff; border: none; padding: 10px; border-radius: 10px; cursor: pointer; font-size: small; font-weight: 600;">Подробнее о проекте</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="process" class="process" aria-label="Этапы работы">
+      <div class="step">
+        <h5 style="font-size: xx-large;">Технологии</h5>
+        <h4>
+          <dl>- Обеспечение доступности, простоты и экономичности эксплуатации и обслуживания дома. Построил и забыл.</dl>
+          <dl>- Исключение недостатков «открытой» стройки. Влияние внешней среды не замедляет производство и не ухудшает качество: все стены и перекрытия собираются в сухом, тёплом цехе, материалы не подвергаются воздействию влаги, солнца или ветра. Нет «намоканий», «разбуханий», «усушек», «расширений», «усадок», «плесени», «выгорания», «замерзаний» и «оттаиваний».</dl>
+          <dl>- Унификация конструкции блоков. Возможность свободного проектирования в пределах стандартизированных решений. Нет необходимости в дорогостоящем проекте длительностью от месяца — вы собираете модель дома из блоков под свои задачи, и мы бесплатно помогаем в этом.</dl>
+          <dl>- Доступность технологий «префаб», «модульный» и «щитовой» дом не только для владельцев участков в коттеджных посёлках с широкими подъездными путями, но и для остальных пользователей.</dl>
+          <dl>- Устранение риска некачественного выполнения работ строительной бригадой. Минимизация человеческого фактора.</dl>
+          <dl>- Отсутствие необходимости присутствия рабочих на участке в течение 2–6 месяцев и создания для них условий проживания.</dl>
+          <dl>- Возможность применения любых фасадных и внутренних отделочных решений.</dl>
+          <dl>- Для желающих сэкономить предусмотрена возможность выполнить часть работ самостоятельно (фасад, внутренняя отделка, коммуникации). Точная геометрия и типоразмеры облегчают и ускоряют эти работы.</dl>
+        </h4>
+      </div>
+    </section>
+
+    <section id="contacts" style="display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap">
+      <div style="flex:1;min-width:240px;background:var(--card);padding:16px;border-radius:12px;box-shadow:var(--shadow)">
+        <h4 style="margin:0 0 8px">Контакты</h4>
+        <p style="margin:0 0 8px;color:var(--muted)">Телефон</p>
+        <p style="margin:0 0 8px;font-weight:700">+7 (980) 218-08-51</p>
+        <p style="margin:0 0 8px;color:var(--muted)">ВКонтакте</p>
+        <p style="margin:0 0 8px;font-weight:700">@modul_ko</p>
+        <p style="margin:0;color:var(--muted)">Адрес</p>
+        <p style="margin:0;font-weight:700">г. Солнечногорск, ул. Стеклозаводская</p>
+      </div>
+
+      <div style="flex:1;min-width:240px;background:var(--card);padding:16px;border-radius:12px;box-shadow:var(--shadow)">
+        <h4 style="margin:0 0 8px">Режим работы</h4>
+        <p style="margin:0;color:var(--muted)">Пн–Пт 9:00–18:00</p>
+        <p style="margin:0;color:var(--muted)">Сб 10:00–17:00</p>
+        <p style="margin:0;color:var(--muted)">Вс — выходной</p>
+        <div style="margin-top:12px">
+          <a class="btn primary" href="tel:+71234567890" style="text-decoration:none;display:inline-block">Позвонить</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <small>© 2025 MODULE CONSTRUCTION — Строительство домов, бань и беседок</small>
+      <div style="display:flex;gap:10px;align-items:center">
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
